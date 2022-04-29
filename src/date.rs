@@ -17,7 +17,7 @@ where
     J: Fn(&Path, u8) -> PathBuf,
 {
     let days = 0..daymax;
-    let names = days.map(|day: u8| join(month_path.as_ref(), day));
+    let names = days.map(|day: u8| join(month_path.as_ref(), 1+day));
     get_dirent_count_by_names(names, filter)
 }
 
@@ -115,7 +115,7 @@ where
         let is_leap_year: bool = leap_check(year);
         let daymax: u8 = day_counter(month, is_leap_year);
         let days = 0..daymax;
-        let names = days.map(|day: u8| join(year_path.as_ref(), month, day));
+        let names = days.map(|day: u8| join(year_path.as_ref(), month, day+1));
         tot + get_dirent_count_by_names(names, filter)
     })
 }
